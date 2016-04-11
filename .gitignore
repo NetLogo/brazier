@@ -1,0 +1,14 @@
+/dist/
+/node_modules/
+/publish/*.js
+
+target/
+
+.DS_Store
+npm-debug.log
+
+*.tmp
+*.swp
+*~
+.#*
+\#*
