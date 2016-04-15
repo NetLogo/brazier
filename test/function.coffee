@@ -1,5 +1,5 @@
 { arrayEquals, booleanEquals, numberEquals, objectEquals, stringEquals } = require('brazier/equals')
-{ id, pipeline }                                                         = require('brazier/function')
+{ flip, id, pipeline }                                                   = require('brazier/function')
 
 ### BEGIN DATA ###
 
@@ -35,6 +35,19 @@ newObject    = new Object()
 objectValues = [emptyObject, normalObject, nestedObject, newObject]
 
 ### END DATA ###
+
+QUnit.test("Function: flip", (assert) ->
+
+  add      = (x) -> (y) -> x + y      # Commutative
+  subtract = (x) -> (y) -> x - y      # Not commutative
+  concat   = (x) -> (y) -> "#{x}#{y}" # Not commutative
+
+  assert.deepEqual(flip(     add)(1)(5),      add(1)(5))
+  assert.deepEqual(flip(subtract)(1)(5), subtract(5)(1))
+
+  assert.deepEqual(flip(concat)("apples")("oranges"), concat("oranges")("apples"))
+
+)
 
 QUnit.test("Function: id", (assert) ->
 
