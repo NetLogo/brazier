@@ -4,6 +4,7 @@ sudo: false
 cache:
   directories:
   - $HOME/.npm
+  - node_modules
 
 language: javascript
 
