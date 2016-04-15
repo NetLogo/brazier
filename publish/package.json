@@ -1,7 +1,7 @@
 {
   "name": "brazierjs",
   "description": "A simple, fast, and flexible JavaScript library for performing common collections-based operations in functional programming style",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": ".",
   "homepage": "https://ccl.northwestern.edu/netlogo",
   "repository": "https://github.com/NetLogo/brazier",
