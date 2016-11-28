@@ -3,69 +3,69 @@
 testArray =
   (equals) -> (assert) ->
 
-    assert.ok(equals(     [])(     []))
-    assert.ok(equals(    [1])(    [1]))
-    assert.ok(equals([1..30])([1..30]))
-    assert.ok(equals([9001, 32, "apples", {}, [3, 32], false])([9001, 32, "apples", {}, [3, 32], false]))
+    assert.ok(equals(     [])(     []) is true)
+    assert.ok(equals(    [1])(    [1]) is true)
+    assert.ok(equals([1..30])([1..30]) is true)
+    assert.ok(equals([9001, 32, "apples", {}, [3, 32], false])([9001, 32, "apples", {}, [3, 32], false]) is true)
 
-    assert.ok(not equals(     [])(    [1]))
-    assert.ok(not equals([1..31])([1..30]))
-    assert.ok(not equals([1..30])([1..31]))
+    assert.ok(not equals(     [])(    [1]) is true)
+    assert.ok(not equals([1..31])([1..30]) is true)
+    assert.ok(not equals([1..30])([1..31]) is true)
 
 testBoolean =
   (equals) -> (assert) ->
 
-    assert.ok(equals( true)( true))
-    assert.ok(equals(false)(false))
+    assert.ok(equals( true)( true) is true)
+    assert.ok(equals(false)(false) is true)
 
-    assert.ok(not equals( true)(false))
-    assert.ok(not equals(false)( true))
+    assert.ok(not equals( true)(false) is true)
+    assert.ok(not equals(false)( true) is true)
 
 testFunction =
   (equals) -> (assert) ->
-    assert.ok(equals(  arrayEquals)(  arrayEquals))
-    assert.ok(equals(booleanEquals)(booleanEquals))
-    assert.ok(equals(           eq)(           eq))
-    assert.ok(equals( numberEquals)( numberEquals))
-    assert.ok(equals( objectEquals)( objectEquals))
-    assert.ok(equals( stringEquals)( stringEquals))
+    assert.ok(equals(  arrayEquals)(  arrayEquals) is true)
+    assert.ok(equals(booleanEquals)(booleanEquals) is true)
+    assert.ok(equals(           eq)(           eq) is true)
+    assert.ok(equals( numberEquals)( numberEquals) is true)
+    assert.ok(equals( objectEquals)( objectEquals) is true)
+    assert.ok(equals( stringEquals)( stringEquals) is true)
 
 testNumber =
   (equals) -> (assert) ->
 
-    assert.ok(equals(       0)(       0))
-    assert.ok(equals(      -1)(      -1))
-    assert.ok(equals(    9001)(    9001))
-    assert.ok(equals(Infinity)(Infinity))
+    assert.ok(equals(       0)(       0) is true)
+    assert.ok(equals(      -1)(      -1) is true)
+    assert.ok(equals(    9001)(    9001) is true)
+    assert.ok(equals(Infinity)(Infinity) is true)
 
-    assert.ok(not equals(       0)(       -1))
-    assert.ok(not equals(      -1)(        0))
-    assert.ok(not equals(Infinity)(-Infinity))
+    assert.ok(not equals(       0)(       -1) is true)
+    assert.ok(not equals(      -1)(        0) is true)
+    assert.ok(not equals(Infinity)(-Infinity) is true)
 
 testObject =
   (equals) -> (assert) ->
 
-    assert.ok(equals({})({}))
-    assert.ok(equals({ a: undefined })({ a: undefined }))
-    assert.ok(equals({ a: 3 })({ a: 3 }))
-    assert.ok(equals({ a: 3, b: {} })({ a: 3, b: {} }))
-    assert.ok(equals({ a: 3, b: [], d: { a: 4, b: "apples", z: false, g: "okay" } })({ a: 3, b: [], d: { a: 4, b: "apples", z: false, g: "okay" } }))
+    assert.ok(equals({})({}) is true)
+    assert.ok(equals({ a: undefined })({ a: undefined }) is true)
+    assert.ok(equals({ a: 3 })({ a: 3 }) is true)
+    assert.ok(equals({ a: 3, b: {} })({ a: 3, b: {} }) is true)
+    assert.ok(equals({ a: 3, b: [], d: { a: 4, b: "apples", z: false, g: "okay" } })({ a: 3, b: [], d: { a: 4, b: "apples", z: false, g: "okay" } }) is true)
 
-    assert.ok(not equals(      {})({ a: 3 }))
-    assert.ok(not equals({ a: 3 })(      {}))
-    assert.ok(not equals(      {})({ a: undefined }))
+    assert.ok(not equals(      {})({ a: 3 }) is true)
+    assert.ok(not equals({ a: 3 })(      {}) is true)
+    assert.ok(not equals(      {})({ a: undefined }) is true)
 
 testString =
   (equals) -> (assert) ->
 
-    assert.ok(equals(     "")(     ""))
-    assert.ok(equals(    "1")(    "1"))
-    assert.ok(equals("1..30")("1..30"))
-    assert.ok(equals("9001, 32, 'apples', {}, [3, 32], false", "9001, 32, 'apples', {}, [3, 32], false"))
+    assert.ok(equals(     "")(     "") is true)
+    assert.ok(equals(    "1")(    "1") is true)
+    assert.ok(equals("1..30")("1..30") is true)
+    assert.ok(equals("9001, 32, 'apples', {}, [3, 32], false")("9001, 32, 'apples', {}, [3, 32], false") is true)
 
-    assert.ok(not equals(     "")(    "1"))
-    assert.ok(not equals("1..31")("1..30"))
-    assert.ok(not equals("1..30")("1..31"))
+    assert.ok(not equals(     "")(    "1") is true)
+    assert.ok(not equals("1..31")("1..30") is true)
+    assert.ok(not equals("1..30")("1..31") is true)
 
 QUnit.test("Equality: Any", (assert) ->
   testArray   (eq)(assert)

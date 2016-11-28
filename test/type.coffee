@@ -62,8 +62,8 @@ QUnit.test("Typechecking", (assert) ->
 
   test = (goods) -> (f) ->
     bads = without(goods)(allValues)
-    assert.ok(forAll (f)(goods))
-    assert.ok(forNone(f)( bads))
+    assert.ok(forAll (f)(goods) is true)
+    assert.ok(forNone(f)( bads) is true)
 
   pairs =
     [

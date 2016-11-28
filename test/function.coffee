@@ -60,9 +60,9 @@ QUnit.test("Function: id", (assert) ->
     , [stringEquals,  stringValues]
     ]
 
-  for [f, vs] in pairs
+  for [equals, vs] in pairs
     for v in vs
-      assert.ok(f(v, id(v)))
+      assert.ok(equals(v)(id(v)) is true)
 
 )
 
