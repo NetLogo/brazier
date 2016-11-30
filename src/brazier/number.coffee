@@ -1,6 +1,10 @@
 module.exports = {
 
   # Number -> Number -> Number
+  multiply: (x) -> (y) ->
+    x * y
+
+  # Number -> Number -> Number
   plus: (x) -> (y) ->
     x + y
 
