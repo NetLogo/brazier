@@ -1,5 +1,9 @@
 module.exports = {
 
+  # forall t u. (t -> u) -> t -> u
+  apply: (f) -> (x) ->
+    f(x)
+
   # forall t u v. (t -> u -> v) -> (u -> t -> v)
   flip: (f) ->
     (x) -> (y) -> f(y)(x)

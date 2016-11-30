@@ -1,5 +1,5 @@
 { arrayEquals, booleanEquals, numberEquals, objectEquals, stringEquals } = require('brazier/equals')
-{ flip, id, pipeline }                                                   = require('brazier/function')
+{ apply, flip, id, pipeline                                            } = require('brazier/function')
 
 ### BEGIN DATA ###
 
@@ -35,6 +35,27 @@ newObject    = new Object()
 objectValues = [emptyObject, normalObject, nestedObject, newObject]
 
 ### END DATA ###
+
+QUnit.test("Function: apply", (assert) ->
+
+  pairs =
+    [
+      [arrayEquals,   arrayValues]
+    , [booleanEquals, booleanValues]
+    , [numberEquals,  numberValues]
+    , [objectEquals,  objectValues]
+    , [stringEquals,  stringValues]
+    ]
+
+  for [equals, vs] in pairs
+    for v in vs
+      assert.ok(apply(equals(v))(v) is true)
+
+  assert.deepEqual([1..10].map(apply((x) -> x * 3)), [3, 6, 9, 12, 15, 18, 21, 24, 27, 30])
+
+  assert.deepEqual([(-> 4), ((x) -> "#{x}"), ((x) -> x / 7)].map(flip(apply)(21)), [4, "21", 3])
+
+)
 
 QUnit.test("Function: flip", (assert) ->
 
