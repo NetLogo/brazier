@@ -9,6 +9,7 @@ brazier is a JavaScript utility library.  It is heavily inspired by Haskell, Und
   * [array](https://github.com/NetLogo/brazier/wiki/Module-APIs#array)
   * [equals](https://github.com/NetLogo/brazier/wiki/Module-APIs#equals)
   * [function](https://github.com/NetLogo/brazier/wiki/Module-APIs#function)
+  * [maybe](https://github.com/NetLogo/brazier/wiki/Module-APIs#maybe)
   * [number](https://github.com/NetLogo/brazier/wiki/Module-APIs#number)
   * [object](https://github.com/NetLogo/brazier/wiki/Module-APIs#object)
   * [type](https://github.com/NetLogo/brazier/wiki/Module-APIs#type)
