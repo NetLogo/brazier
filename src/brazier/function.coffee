@@ -4,6 +4,10 @@ module.exports = {
   apply: (f) -> (x) ->
     f(x)
 
+  # forall t. t -> Unit -> t
+  constantly: (x) ->
+    -> x
+
   # forall t u v. (t -> u -> v) -> (u -> t -> v)
   flip: (f) ->
     (x) -> (y) -> f(y)(x)

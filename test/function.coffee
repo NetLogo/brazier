@@ -1,5 +1,5 @@
 { arrayEquals, booleanEquals, numberEquals, objectEquals, stringEquals } = require('brazier/equals')
-{ apply, flip, id, pipeline                                            } = require('brazier/function')
+{ apply, constantly, flip, id, pipeline                                } = require('brazier/function')
 
 ### BEGIN DATA ###
 
@@ -36,6 +36,8 @@ objectValues = [emptyObject, normalObject, nestedObject, newObject]
 
 ### END DATA ###
 
+exploder = (x) -> throw new Error("This code should not get run.")
+
 QUnit.test("Function: apply", (assert) ->
 
   pairs =
@@ -54,6 +56,16 @@ QUnit.test("Function: apply", (assert) ->
   assert.deepEqual([1..10].map(apply((x) -> x * 3)), [3, 6, 9, 12, 15, 18, 21, 24, 27, 30])
 
   assert.deepEqual([(-> 4), ((x) -> "#{x}"), ((x) -> x / 7)].map(flip(apply)(21)), [4, "21", 3])
+
+)
+
+QUnit.test("Function: constantly", (assert) ->
+
+  test =
+    (expected) ->
+      assert.deepEqual(constantly(expected)(), expected)
+
+  arrayValues.concat(booleanValues, numberValues, objectValues, stringValues).forEach(test)
 
 )
 
