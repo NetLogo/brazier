@@ -1,5 +1,6 @@
-{ eq }      = require('./equals')
-{ isArray } = require('./type')
+{ eq                     } = require('./equals')
+{ maybe, None, Something } = require('./maybe')
+{ isArray                } = require('./type')
 
 arrayOps = {
 
@@ -51,19 +52,19 @@ arrayOps = {
     for x in arr when f(x)
       x
 
-  # forall t. (t -> Boolean) -> Array t -> t
+  # forall t. (t -> Boolean) -> Array t -> Maybe t
   find: (f) -> (arr) ->
     for x in arr
       if f(x)
-        return x
-    undefined
+        return Something(x)
+    None
 
-  # forall t. (t -> Boolean) -> Array t -> Number
+  # forall t. (t -> Boolean) -> Array t -> Maybe Number
   findIndex: (f) -> (arr) ->
     for x, i in arr
       if f(x)
-        return i
-    undefined
+        return Something(i)
+    None
 
   # forall t u. (t -> Array u) -> Array t -> Array u
   flatMap: (f) -> (arr) ->
@@ -95,17 +96,17 @@ arrayOps = {
       f(x)
     return
 
-  # forall t. Array t -> t
+  # forall t. Array t -> Maybe t
   head: (arr) ->
-    arr[0]
+    arrayOps.item(0)(arr)
 
   # forall t. Array t -> Boolean
   isEmpty: (arr) ->
     arr.length is 0
 
-  # forall t. Number -> Array t -> t
+  # forall t. Number -> Array t -> Maybe t
   item: (index) -> (xs) ->
-    xs[index]
+    if 0 <= index < xs.length then Something(xs[index]) else None
 
   # forall t. Array t -> t
   last: (arr) ->
@@ -129,7 +130,7 @@ arrayOps = {
       if y > maxY
         maxX = x
         maxY = y
-    maxX
+    maybe(maxX)
 
   # forall t. t -> Array t
   singleton: (x) ->
