@@ -357,8 +357,8 @@ QUnit.test("Array: flatMap", (assert) ->
   g     = (x) -> point("#{x}?")
   h     = (x) -> point("#{x}~")
 
-  item  = "apples"
-  items = ["apples", "grapes", "oranges"]
+  str  = "apples"
+  strs = ["apples", "grapes", "oranges"]
 
   # Kleisli Arrow / Kleisli composition operator
   kleisli =
@@ -368,9 +368,9 @@ QUnit.test("Array: flatMap", (assert) ->
   fgh1 = kleisli(kleisli(f)(g))(h)
   fgh2 = kleisli(f)(kleisli(g)(h))
 
-  test(point(item), f,     f(item))                            # Left identity
-  test(items,       point, items)                              # Right identity
-  assert.deepEqual(flatMap(fgh1)(items), flatMap(fgh2)(items)) # Associativity
+  test(point(str), f,     f(str))                            # Left identity
+  test(strs,       point, strs)                              # Right identity
+  assert.deepEqual(flatMap(fgh1)(strs), flatMap(fgh2)(strs)) # Associativity
 
 )
 
