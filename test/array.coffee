@@ -1,4 +1,4 @@
-{ all, concat, contains, countBy, difference, exists, filter, find, findIndex, flatMap, flattenDeep, foldl, forEach, head, headAndTail, isEmpty, last, length, map, maxBy, sortBy, sortedIndexBy, tail, toObject, unique, uniqueBy, zip } = require('brazier/array')
+{ all, concat, contains, countBy, difference, exists, filter, find, findIndex, flatMap, flattenDeep, foldl, forEach, head, headAndTail, isEmpty, item, last, length, map, maxBy, sortBy, sortedIndexBy, tail, toObject, unique, uniqueBy, zip } = require('brazier/array')
 { id, pipeline } = require('brazier/function')
 
 exploder = (x) -> throw new Error("This code should not get run.")
@@ -521,6 +521,30 @@ QUnit.test("Array: isEmpty", (assert) ->
   test([true, false, true],  false)
   test(["apples"],           false)
   test([{}, true, 10],       false)
+
+)
+
+QUnit.test("Array: item", (assert) ->
+
+  test =
+    (i, xs, expected) ->
+      assert.deepEqual(item(i)(xs), expected)
+
+  test(0,      [],                 undefined)
+  test(-1,     [1],                undefined)
+  test(0,      [1],                1)
+  test(1,      [1],                undefined)
+  test(9001,   [1],                undefined)
+  test(0,      [13..19],           13)
+  test(1,      [13..19],           14)
+  test(2,      [13..19],           15)
+  test(3,      [13..19],           16)
+  test(4,      [13..19],           17)
+  test(5,      [13..19],           18)
+  test(6,      [13..19],           19)
+  test(7,      [13..19],           undefined)
+  test(1,      ["merpy", "gurpy"], "gurpy")
+  test(0,      ["merpy", "gurpy"], "merpy")
 
 )
 

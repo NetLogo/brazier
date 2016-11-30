@@ -107,6 +107,10 @@ arrayOps = {
   isEmpty: (arr) ->
     arr.length is 0
 
+  # forall t. Number -> Array t -> t
+  item: (index) -> (xs) ->
+    xs[index]
+
   # forall t. Array t -> t
   last: (arr) ->
     arr[arr.length - 1]
