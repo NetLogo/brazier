@@ -9,7 +9,7 @@ maybeOps = {
 
   # forall t u. (t -> Maybe u) -> Maybe t -> Maybe u
   flatMap: (f) -> (maybe) ->
-    if maybeOps.isSomething(maybe) then f(maybe.value) else maybeOps.None
+    maybeOps.fold(-> maybeOps.None)(f)(maybe)
 
   # forall t u. (Unit -> u) -> (t -> u) -> Maybe t -> u
   fold: (ifNone) -> (ifSomething) -> (maybe) ->
@@ -21,11 +21,11 @@ maybeOps = {
 
   # forall t u. (t -> u) -> Maybe t -> Maybe u
   map: (f) -> (maybe) ->
-    if maybeOps.isSomething(maybe) then maybeOps.Something(f(maybe.value)) else maybeOps.None
+    maybeOps.fold(-> maybeOps.None)((x) -> maybeOps.Something(f(x)))(maybe)
 
   # forall t. Maybe t -> Array t
   toArray: (maybe) ->
-    if maybeOps.isSomething(maybe) then [maybe.value] else []
+    maybeOps.fold(-> [])((x) -> [x])(maybe)
 
 }
 
