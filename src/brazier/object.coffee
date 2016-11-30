@@ -1,3 +1,5 @@
+{ None, Something } = require('./maybe')
+
 module.exports = {
 
   # forall t. Object t -> Object t
@@ -12,6 +14,10 @@ module.exports = {
   # Object _ -> Array String
   keys: (obj) ->
     Object.keys(obj)
+
+  # forall t. String -> Object t -> Maybe t
+  lookup: (key) -> (obj) ->
+    if obj.hasOwnProperty(key) then Something(obj[key]) else None
 
   # forall t. Object t -> Array (String, t)
   pairs: (obj) ->

@@ -1,6 +1,7 @@
-{ arrayEquals, objectEquals  } = require('brazier/equals')
-{ pipeline                   } = require('brazier/function')
-{ clone, keys, pairs, values } = require('brazier/object')
+{ arrayEquals, objectEquals          } = require('brazier/equals')
+{ pipeline                           } = require('brazier/function')
+{ None, Something                    } = require('brazier/maybe')
+{ clone, keys, lookup, pairs, values } = require('brazier/object')
 
 QUnit.test("Object: clone", (assert) ->
   test = (x) -> assert.deepEqual(clone(x), x)
@@ -16,6 +17,19 @@ QUnit.test("Object: keys", (assert) ->
   test({ a: undefined },                      ["a"])
   test({ a: 3 },                              ["a"])
   test({ a: "abc", z: 123, d: [], b: false }, ["a", "z", "d", "b"])
+)
+
+QUnit.test("Object: lookup", (assert) ->
+  test = (key, obj, y) -> assert.deepEqual(lookup(key)(obj), y)
+  test('anything', {},                                    None)
+  test('a',        { a: undefined },                      Something(undefined))
+  test('other',    { a: undefined },                      None)
+  test('marvin',   { marvin: 3 },                         Something(3))
+  test('a',        { a: "abc", z: 123, d: [], b: false }, Something("abc"))
+  test('b',        { a: "abc", z: 123, d: [], b: false }, Something(false))
+  test('z',        { a: "abc", z: 123, d: [], b: false }, Something(123))
+  test('d',        { a: "abc", z: 123, d: [], b: false }, Something([]))
+  test('g',        { a: "abc", z: 123, d: [], b: false }, None)
 )
 
 QUnit.test("Object: pairs", (assert) ->
