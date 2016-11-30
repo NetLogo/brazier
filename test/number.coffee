@@ -12,14 +12,14 @@ QUnit.test("Function: plus", (assert) ->
   assert.deepEqual(plus( 15)(-10),   5)
 )
 
-QUnit.test("Number: RangeTo", (assert) ->
+QUnit.test("Number: rangeTo", (assert) ->
   assert.deepEqual(rangeTo(0)( 5), [0, 1, 2, 3, 4, 5])
   assert.deepEqual(rangeTo(0)( 0), [0])
   assert.deepEqual(rangeTo(0)(-1), [])
 
 )
 
-QUnit.test("Number: RangeUntil", (assert) ->
+QUnit.test("Number: rangeUntil", (assert) ->
   assert.deepEqual(rangeUntil(0)( 5), [0, 1, 2, 3, 4])
   assert.deepEqual(rangeUntil(0)( 0), [])
   assert.deepEqual(rangeUntil(0)(-1), [])
