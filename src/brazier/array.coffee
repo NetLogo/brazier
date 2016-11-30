@@ -10,6 +10,10 @@ arrayOps = {
         return false
     true
 
+  # forall t. Array t -> Array t -> Array t
+  concat: (ys) -> (xs) ->
+    xs.concat(ys)
+
   # forall t. t -> Array t -> Boolean
   contains: (x) -> (arr) ->
     for item in arr

@@ -1,4 +1,4 @@
-{ all, contains, countBy, difference, exists, filter, find, findIndex, flatMap, flattenDeep, foldl, forEach, head, headAndTail, isEmpty, last, length, map, maxBy, sortBy, sortedIndexBy, tail, toObject, unique, uniqueBy, zip } = require('brazier/array')
+{ all, concat, contains, countBy, difference, exists, filter, find, findIndex, flatMap, flattenDeep, foldl, forEach, head, headAndTail, isEmpty, last, length, map, maxBy, sortBy, sortedIndexBy, tail, toObject, unique, uniqueBy, zip } = require('brazier/array')
 { id, pipeline } = require('brazier/function')
 
 exploder = (x) -> throw new Error("This code should not get run.")
@@ -31,6 +31,23 @@ QUnit.test("Array: all", (assert) ->
   testAtLeast3Elems([[13..19], "dreq", [1..3]],   true)
 
   assert.deepEqual(all(exploder)([]), true)
+
+)
+
+QUnit.test("Array: concat", (assert) ->
+
+  test =
+    (ys, xs, expected) ->
+      assert.deepEqual(concat(ys)(xs), expected)
+
+  test([1],        [],                   [1])
+  test([],         [976],                [976])
+  test([5],        [1],                  [1, 5])
+  test([[3..6]],   [[13..19]],           [[13..19], [3..6]])
+  test([17],       [13..19],             [13, 14, 15, 16, 17, 18, 19, 17])
+  test(["merp"],   ["merpy", "gurpy"],   ["merpy", "gurpy", "merp"])
+  test([9001],     ["merpy", "gurpy"],   ["merpy", "gurpy", 9001])
+  test([3..6],     [13..19],             [13, 14, 15, 16, 17, 18, 19, 3, 4, 5, 6])
 
 )
 
