@@ -1,4 +1,4 @@
-{ all, concat, contains, countBy, difference, exists, filter, find, findIndex, flatMap, flattenDeep, foldl, forEach, head, headAndTail, isEmpty, item, last, length, map, maxBy, sortBy, sortedIndexBy, tail, toObject, unique, uniqueBy, zip } = require('brazier/array')
+{ all, concat, contains, countBy, difference, exists, filter, find, findIndex, flatMap, flattenDeep, foldl, forEach, head, headAndTail, isEmpty, item, last, length, map, maxBy, prepend, singleton, sortBy, sortedIndexBy, tail, toObject, unique, uniqueBy, zip } = require('brazier/array')
 { id, pipeline } = require('brazier/function')
 
 exploder = (x) -> throw new Error("This code should not get run.")
@@ -647,6 +647,23 @@ QUnit.test("Array: maxBy", (assert) ->
   test(megalist, ((x) -> (x ? {}).apples ? 0),                       { apples: 3 })
   test(megalist, ((x) -> (x ? {}).length ? 0),                       [13..19])
   test(megalist, ((x) -> if isNaN(Number(x)) then 0 else Number(x)), 22)
+
+)
+
+QUnit.test("Array: singleton", (assert) ->
+
+  test =
+    (x, expected) ->
+      assert.deepEqual(singleton(x), expected)
+
+  test(1,                  [1])
+  test(9001,               [9001])
+  test(true,               [true])
+  test(false,              [false])
+  test("merp",             ["merp"])
+  test([3..6],             [[3..6]])
+  test(["merpy", "gerpy"], [["merpy", "gerpy"]])
+  test({ apples: 3 },      [{ apples: 3 }])
 
 )
 

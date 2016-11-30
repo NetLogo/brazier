@@ -135,6 +135,10 @@ arrayOps = {
         maxY = y
     maxX
 
+  # forall t. t -> Array t
+  singleton: (x) ->
+    [x]
+
   # forall t. (t -> Comparable) -> Array t -> Array t
   sortBy: (f) -> (arr) ->
     g = (x, y) ->
