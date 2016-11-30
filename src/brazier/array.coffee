@@ -99,10 +99,6 @@ arrayOps = {
   head: (arr) ->
     arr[0]
 
-  # forall t. Array t -> (t, Array t)
-  headAndTail: (arr) ->
-    [arr[0], arr.slice(1)]
-
   # forall t. Array t -> Boolean
   isEmpty: (arr) ->
     arr.length is 0

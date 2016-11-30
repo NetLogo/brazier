@@ -1,4 +1,4 @@
-{ all, concat, contains, countBy, difference, exists, filter, find, findIndex, flatMap, flattenDeep, foldl, forEach, head, headAndTail, isEmpty, item, last, length, map, maxBy, prepend, singleton, sortBy, sortedIndexBy, tail, toObject, unique, uniqueBy, zip } = require('brazier/array')
+{ all, concat, contains, countBy, difference, exists, filter, find, findIndex, flatMap, flattenDeep, foldl, forEach, head, isEmpty, item, last, length, map, maxBy, prepend, singleton, sortBy, sortedIndexBy, tail, toObject, unique, uniqueBy, zip } = require('brazier/array')
 { id, pipeline } = require('brazier/function')
 
 exploder = (x) -> throw new Error("This code should not get run.")
@@ -486,23 +486,6 @@ QUnit.test("Array: head", (assert) ->
   test([false, false, true], false)
   test(["apples"],           "apples")
   test([{}, true, 10],       {})
-
-)
-
-QUnit.test("Array: headAndTail", (assert) ->
-
-  test =
-    (input, expected) ->
-      assert.deepEqual(headAndTail(input), expected)
-
-  test([],                   [undefined, []])
-  test([1],                  [1, []])
-  test([1..2],               [1, [2]])
-  test([13..19],             [13, [14..19]])
-  test([true, false, true],  [true, [false, true]])
-  test([false, false, true], [false, [false, true]])
-  test(["apples"],           ["apples", []])
-  test([{}, true, 10],       [{}, [true, 10]])
 
 )
 
