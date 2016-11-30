@@ -38,6 +38,10 @@ module.exports = {
         out = f(out)
       out
 
+  # forall t u v. (t -> u) -> (t -> v) -> t -> (u, v)
+  tee: (f) -> (g) ->
+    (x) -> [f(x), g(x)]
+
   # (? -> ?) -> Function?
   uncurry: (f) ->
     (args...) ->

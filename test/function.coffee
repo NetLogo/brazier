@@ -1,5 +1,5 @@
 { arrayEquals, booleanEquals, numberEquals, objectEquals, stringEquals } = require('brazier/equals')
-{ apply, constantly, curry, flip, id, pipeline, uncurry                } = require('brazier/function')
+{ apply, constantly, curry, flip, id, pipeline, tee, uncurry           } = require('brazier/function')
 
 ### BEGIN DATA ###
 
@@ -133,6 +133,20 @@ QUnit.test("Function: pipeline", (assert) ->
   assert.deepEqual(pipeline(double, double, double, double, double, double)(1), 64)
   assert.deepEqual(pipeline(double, plusOne, double)(1), 6)
   assert.deepEqual(pipeline(double, plusOne, double, toString)(1), "6")
+
+)
+
+QUnit.test("Function: tee", (assert) ->
+
+  test =
+    (f, g, x, expected) ->
+      assert.deepEqual(tee(f)(g)(x), expected)
+
+  test((-> 3), (-> 4), "pooey", [3, 4])
+
+  test(((x) -> x.length), ((x) -> "#{x}!"), "pooey", [5, "pooey!"])
+
+  test(((x) -> "#{x} so gooey"), ((x) -> x.length * 6), "pooey", ["pooey so gooey", 30])
 
 )
 
