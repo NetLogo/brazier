@@ -1,5 +1,5 @@
 { arrayEquals, booleanEquals, numberEquals, objectEquals, stringEquals } = require('brazier/equals')
-{ apply, constantly, flip, id, pipeline                                } = require('brazier/function')
+{ apply, constantly, curry, flip, id, pipeline                         } = require('brazier/function')
 
 ### BEGIN DATA ###
 
@@ -66,6 +66,28 @@ QUnit.test("Function: constantly", (assert) ->
       assert.deepEqual(constantly(expected)(), expected)
 
   arrayValues.concat(booleanValues, numberValues, objectValues, stringValues).forEach(test)
+
+)
+
+QUnit.test("Function: curry", (assert) ->
+
+  test =
+    (uncurried, args...) ->
+      curried = curry(uncurried)
+      curriedResult =
+        if args.length is 0
+          curried()
+        else
+          args.reduce(((f, x) -> f(x)), curried)
+      assert.deepEqual(curriedResult, uncurried(args...))
+
+  test(-> 3)
+
+  test(((x) -> "apples: #{x}"), "oranges")
+
+  test(((x, y) -> "apples: #{x + y}"), 9001, 67)
+
+  test(((x, y, z) -> "apples: #{x + y / z}"), 9001, 67, 10)
 
 )
 

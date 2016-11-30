@@ -8,6 +8,19 @@ module.exports = {
   constantly: (x) ->
     -> x
 
+  # Function? -> (? -> ?)
+  curry: (f) ->
+    argsToArray = (args) -> Array.prototype.slice.call(args, 0)
+    curryMaster = ->
+      argsThusFar = argsToArray(arguments)
+      if argsThusFar.length >= f.length
+        f(argsThusFar...)
+      else
+        ->
+          nextTierArgs = argsToArray(arguments)
+          curryMaster(argsThusFar.concat(nextTierArgs)...)
+    curryMaster
+
   # forall t u v. (t -> u -> v) -> (u -> t -> v)
   flip: (f) ->
     (x) -> (y) -> f(y)(x)
