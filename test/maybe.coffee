@@ -1,6 +1,6 @@
 { arrayEquals, booleanEquals, numberEquals, objectEquals, stringEquals } = require('brazier/equals')
 { pipeline                                                             } = require('brazier/function')
-{ flatMap, fold, isSomething, Something, map, None, toArray            } = require('brazier/maybe')
+{ filter, flatMap, fold, isSomething, Something, map, None, toArray    } = require('brazier/maybe')
 
 exploder = (x) -> throw new Error("This code should not get run.")
 
@@ -38,6 +38,37 @@ newObject    = new Object()
 objectValues = [emptyObject, normalObject, nestedObject, newObject]
 
 ### END DATA ###
+
+QUnit.test("Maybe: filter", (assert) ->
+
+  test =
+    (maybe, f, expected) ->
+      assert.deepEqual(filter(f)(maybe), expected)
+
+  test(None, ((x) -> throw new Exception("BOOM!  HAHAHA!")), None)
+  test(None, ((x) ->                                  true), None)
+  test(None, ((x) ->                                 false), None)
+
+  test(Something("apples"), ((x) ->  true), Something("apples"))
+  test(Something("apples"), ((x) -> false), None)
+
+  test(Something(3), ((x) ->  true), Something(3))
+  test(Something(3), ((x) -> false), None)
+
+  test(Something(true), ((x) ->  true), Something(true))
+  test(Something(true), ((x) -> false), None)
+
+  test(Something({}), ((x) ->  true), Something({}))
+  test(Something({}), ((x) -> false), None)
+
+  test(Something("apples"), ((x) -> x.length is 3),  None)
+  test(Something("apples"), ((x) -> x.length is 6),  Something("apples"))
+  test(Something("apples"), ((x) -> x is "apples"),  Something("apples"))
+  test(Something("apples"), ((x) -> x is "oranges"), None)
+  test(Something("apples"), ((x) -> x[3] is "l"),    Something("apples"))
+  test(Something("apples"), ((x) -> x[3] is "p"),    None)
+
+)
 
 QUnit.test("Maybe: flatMap", (assert) ->
 

@@ -7,6 +7,10 @@ maybeOps = {
   Something: (x) ->
     { _type: "something", _value: x }
 
+  # forall t. (t -> Boolean) -> Maybe t -> Maybe t
+  filter: (f) -> (maybe) ->
+    maybeOps.flatMap((x) -> if f(x) then maybeOps.Something(x) else maybeOps.None)(maybe)
+
   # forall t u. (t -> Maybe u) -> Maybe t -> Maybe u
   flatMap: (f) -> (maybe) ->
     maybeOps.fold(-> maybeOps.None)(f)(maybe)
