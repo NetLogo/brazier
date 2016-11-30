@@ -5,7 +5,7 @@ maybeOps = {
 
   # forall t. t -> Maybe t
   Something: (x) ->
-    { type: "something", value: x }
+    { _type: "something", _value: x }
 
   # forall t u. (t -> Maybe u) -> Maybe t -> Maybe u
   flatMap: (f) -> (maybe) ->
@@ -13,11 +13,11 @@ maybeOps = {
 
   # forall t u. (Unit -> u) -> (t -> u) -> Maybe t -> u
   fold: (ifNone) -> (ifSomething) -> (maybe) ->
-    if maybeOps.isSomething(maybe) then ifSomething(maybe.value) else ifNone()
+    if maybeOps.isSomething(maybe) then ifSomething(maybe._value) else ifNone()
 
   # Maybe _ -> Boolean
-  isSomething: ({ type }) ->
-    type is "something"
+  isSomething: ({ _type }) ->
+    _type is "something"
 
   # forall t u. (t -> u) -> Maybe t -> Maybe u
   map: (f) -> (maybe) ->
