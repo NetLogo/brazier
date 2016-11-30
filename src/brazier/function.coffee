@@ -38,4 +38,9 @@ module.exports = {
         out = f(out)
       out
 
+  # (? -> ?) -> Function?
+  uncurry: (f) ->
+    (args...) ->
+      args.reduce(((acc, arg) -> acc(arg)), f)
+
 }

@@ -1,5 +1,5 @@
 { arrayEquals, booleanEquals, numberEquals, objectEquals, stringEquals } = require('brazier/equals')
-{ apply, constantly, curry, flip, id, pipeline                         } = require('brazier/function')
+{ apply, constantly, curry, flip, id, pipeline, uncurry                } = require('brazier/function')
 
 ### BEGIN DATA ###
 
@@ -133,5 +133,22 @@ QUnit.test("Function: pipeline", (assert) ->
   assert.deepEqual(pipeline(double, double, double, double, double, double)(1), 64)
   assert.deepEqual(pipeline(double, plusOne, double)(1), 6)
   assert.deepEqual(pipeline(double, plusOne, double, toString)(1), "6")
+
+)
+
+QUnit.test("Function: uncurry", (assert) ->
+
+  test =
+    (curried, args...) ->
+      expected = args.reduce(((f, x) -> f(x)), curried)
+      assert.deepEqual(uncurry(curried)(args...), expected)
+
+  test(-> 3)
+
+  test(((x) -> "apples: #{x}"), "oranges")
+
+  test(((x) -> (y) -> "apples: #{x + y}"), 9001, 67)
+
+  test(((x) -> (y) -> (z) -> "apples: #{x + y / z}"), 9001, 67, 10)
 
 )
