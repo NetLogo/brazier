@@ -1,6 +1,6 @@
 maybeOps = {
 
-  # None
+  # Maybe Nothing
   None: {}
 
   # forall t. t -> Maybe t
