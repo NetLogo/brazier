@@ -1,6 +1,6 @@
-{ arrayEquals, booleanEquals, numberEquals, objectEquals, stringEquals } = require('brazier/equals')
-{ pipeline                                                             } = require('brazier/function')
-{ filter, flatMap, fold, isSomething, Something, map, None, toArray    } = require('brazier/maybe')
+{ arrayEquals, booleanEquals, numberEquals, objectEquals, stringEquals             } = require('brazier/equals')
+{ pipeline                                                                         } = require('brazier/function')
+{ filter, flatMap, fold, isSomething, Something, map, maybe: maybeF, None, toArray } = require('brazier/maybe')
 
 exploder = (x) -> throw new Error("This code should not get run.")
 
@@ -231,6 +231,18 @@ QUnit.test("Maybe: map", (assert) ->
 
   test(maybe, id, maybe)                                # Identity
   assert.deepEqual(mapTwice(maybe), mapComposed(maybe)) # Associativity
+
+)
+
+QUnit.test("Maybe: maybe", (assert) ->
+
+  test =
+    (value, expected) ->
+      assert.deepEqual(fold(-> "loser")((x) -> x)(maybeF(value)), value ? "loser")
+
+  values = [].concat(arrayValues, booleanValues, numberValues, objectValues, stringValues)
+
+  values.forEach(test)
 
 )
 

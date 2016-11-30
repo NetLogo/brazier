@@ -27,6 +27,10 @@ maybeOps = {
   map: (f) -> (maybe) ->
     maybeOps.fold(-> maybeOps.None)((x) -> maybeOps.Something(f(x)))(maybe)
 
+  # forall t. t -> Maybe t
+  maybe: (x) ->
+    if x? then maybeOps.Something(x) else maybeOps.None
+
   # forall t. Maybe t -> Array t
   toArray: (maybe) ->
     maybeOps.fold(-> [])((x) -> [x])(maybe)
