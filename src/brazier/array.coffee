@@ -12,7 +12,7 @@ arrayOps = {
     true
 
   # forall t. Array t -> Array t -> Array t
-  concat: (ys) -> (xs) ->
+  concat: (xs) -> (ys) ->
     xs.concat(ys)
 
   # forall t. t -> Array t -> Boolean

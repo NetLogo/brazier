@@ -39,7 +39,7 @@ QUnit.test("Array: concat", (assert) ->
 
   test =
     (ys, xs, expected) ->
-      assert.deepEqual(concat(ys)(xs), expected)
+      assert.deepEqual(concat(xs)(ys), expected)
 
   test([1],        [],                   [1])
   test([],         [976],                [976])
