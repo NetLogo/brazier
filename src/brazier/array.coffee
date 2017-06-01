@@ -132,6 +132,10 @@ arrayOps = {
         maxY = y
     maybe(maxX)
 
+  # forall t. Array t -> Array t
+  reverse: (xs) ->
+    xs[..].reverse()
+
   # forall t. t -> Array t
   singleton: (x) ->
     [x]

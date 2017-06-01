@@ -1,4 +1,4 @@
-{ all, concat, contains, countBy, difference, exists, filter, find, findIndex, flatMap, flattenDeep, foldl, forEach, head, isEmpty, item, last, length, map, maxBy, prepend, singleton, sortBy, sortedIndexBy, tail, toObject, unique, uniqueBy, zip } = require('brazier/array')
+{ all, concat, contains, countBy, difference, exists, filter, find, findIndex, flatMap, flattenDeep, foldl, forEach, head, isEmpty, item, last, length, map, maxBy, prepend, reverse, singleton, sortBy, sortedIndexBy, tail, toObject, unique, uniqueBy, zip } = require('brazier/array')
 { id, pipeline    } = require('brazier/function')
 { None, Something } = require('brazier/maybe')
 
@@ -635,6 +635,26 @@ QUnit.test("Array: maxBy", (assert) ->
   test(megalist, ((x) -> (x ? {}).apples ? 0),                       Something({ apples: 3 }))
   test(megalist, ((x) -> (x ? {}).length ? 0),                       Something([13..19]))
   test(megalist, ((x) -> if isNaN(Number(x)) then 0 else Number(x)), Something(22))
+
+)
+
+QUnit.test("Array: reverse", (assert) ->
+
+  test =
+    (xs, expected) ->
+      assert.deepEqual(reverse(xs), expected)
+
+  test([],                                                                        [])
+  test([true],                                                                    [true])
+  test([9001],                                                                    [9001])
+  test([3..6],                                                                    [6..3])
+  test(["merpy", "gerpy", "derpy"],                                               ["derpy", "gerpy", "merpy"])
+  test([true, false, false, true],                                                [true, false, false, true])
+  test([true, false, true, true],                                                 [true, true, false, true])
+  test([{}, { apples: 3 }, { isFruitBasket: true, apples: 9001, oranges: 8999 }], [{ isFruitBasket: true, apples: 9001, oranges: 8999 }, { apples: 3 }, {}])
+  test([[true], [9001], [3..6], [6..3], ["merpy", "gerpy", "derpy"]],             [["merpy", "gerpy", "derpy"], [6..3], [3..6], [9001], [true]])
+  test([true, 9001, [3..6], 6, ["merpy", "gerpy", "derpy"]],                      [["merpy", "gerpy", "derpy"], 6, [3..6], 9001, true])
+  test([-6, 24, 4, -78, 22, -4, 4, 13, 22, -0],                                   [-0, 22, 13, 4, -4, 22, -78, 4, 24, -6])
 
 )
 
