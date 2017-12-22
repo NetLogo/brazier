@@ -34,8 +34,8 @@ arrayOps = {
   # forall t. Array t -> Array t -> Array t
   difference: (xs) -> (arr) ->
     acc     = []
-    badBoys = arrayOps.unique(xs)
-    for x in arr
+    badBoys = arrayOps.unique(arr)
+    for x in xs
       if not arrayOps.contains(x)(badBoys)
         acc.push(x)
     acc

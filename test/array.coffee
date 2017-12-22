@@ -110,7 +110,7 @@ QUnit.test("Array: difference", (assert) ->
 
   test =
     (xs, ys, expected) ->
-      assert.deepEqual(difference(ys)(xs), expected)
+      assert.deepEqual(difference(xs)(ys), expected)
 
   test([],                         [],        [])
   test([1],                        [],        [1])
