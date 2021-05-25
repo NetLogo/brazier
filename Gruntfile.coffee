@@ -73,7 +73,7 @@ module.exports = (grunt) ->
         files: [
 
           {
-            src: ['node_modules/qunitjs/qunit/*']
+            src: ['node_modules/qunit/qunit/*']
           , dest: 'test/target/qunit'
           , expand:  true
           , filter:  'isFile'
