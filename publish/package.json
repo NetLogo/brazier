@@ -22,6 +22,6 @@
     "qunit": "^2.15.0"
   },
   "scripts": {
-    "test": "echo \"See https://travis-ci.org/NetLogo/brazier for testing details.\""
+    "test": "echo \"See https://github.com/NetLogo/brazier/actions/new for testing details.\""
   }
 }
