@@ -1,9 +1,9 @@
-require('brazier/array')
-require('brazier/equals')
-require('brazier/function')
-require('brazier/maybe')
-require('brazier/number')
-require('brazier/object')
-require('brazier/type')
+import 'brazier/array.js'
+import 'brazier/equals.js'
+import 'brazier/function.js'
+import 'brazier/maybe.js'
+import 'brazier/number.js'
+import 'brazier/object.js'
+import 'brazier/type.js'
 
-module.exports = ->
+export default (->)

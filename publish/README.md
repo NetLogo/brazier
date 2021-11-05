@@ -22,7 +22,7 @@ brazier is a JavaScript utility library.  It is heavily inspired by Haskell, Und
   * [object](https://github.com/NetLogo/brazier/wiki/Module-APIs#object)
   * [type](https://github.com/NetLogo/brazier/wiki/Module-APIs#type)
 
-You can depend on a module by calling `require('brazierjs/<module name>')`.
+Modules modules can be imported with standard ES6 `import`s (e.g. `import { isArray } from "/url/to/type.js"`).
 
 ## Terms of Use
 

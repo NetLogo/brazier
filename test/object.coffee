@@ -1,7 +1,9 @@
-{ arrayEquals, objectEquals          } = require('brazier/equals')
-{ pipeline                           } = require('brazier/function')
-{ None, Something                    } = require('brazier/maybe')
-{ clone, keys, lookup, pairs, values } = require('brazier/object')
+import { QUnit } from '/test/target/qunit/qunit.js'
+
+import { arrayEquals, objectEquals          } from '/target/brazier/brazier/equals.js'
+import { pipeline                           } from '/target/brazier/brazier/function.js'
+import { None, Something                    } from '/target/brazier/brazier/maybe.js'
+import { clone, keys, lookup, pairs, values } from '/target/brazier/brazier/object.js'
 
 QUnit.test("Object: clone", (assert) ->
   test = (x) -> assert.deepEqual(clone(x), x)

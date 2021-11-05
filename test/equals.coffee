@@ -1,4 +1,6 @@
-{ arrayEquals, booleanEquals, eq, numberEquals, objectEquals, stringEquals } = require('brazier/equals')
+import { QUnit } from '/test/target/qunit/qunit.js'
+
+import { arrayEquals, booleanEquals, eq, numberEquals, objectEquals, stringEquals } from '/target/brazier/brazier/equals.js'
 
 testArray =
   (equals) -> (assert) ->

@@ -1,4 +1,6 @@
-{ multiply, plus, rangeTo, rangeUntil } = require('brazier/number')
+import { QUnit } from '/test/target/qunit/qunit.js'
+
+import { multiply, plus, rangeTo, rangeUntil } from '/target/brazier/brazier/number.js'
 
 QUnit.test("Number: multiply", (assert) ->
   assert.deepEqual(multiply(  0)(  5),    0)

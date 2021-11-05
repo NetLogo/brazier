@@ -1,6 +1,8 @@
-{ arrayEquals, booleanEquals, numberEquals, objectEquals, stringEquals             } = require('brazier/equals')
-{ pipeline                                                                         } = require('brazier/function')
-{ filter, flatMap, fold, isSomething, Something, map, maybe: maybeF, None, toArray } = require('brazier/maybe')
+import { QUnit } from '/test/target/qunit/qunit.js'
+
+import { arrayEquals, booleanEquals, numberEquals, objectEquals, stringEquals               } from '/target/brazier/brazier/equals.js'
+import { pipeline                                                                           } from '/target/brazier/brazier/function.js'
+import { filter, flatMap, fold, isSomething, Something, map, maybe as maybeF, None, toArray } from '/target/brazier/brazier/maybe.js'
 
 exploder = (x) -> throw new Error("This code should not get run.")
 

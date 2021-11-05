@@ -1,4 +1,4 @@
-{ isArray, isBoolean, isNumber, isObject, isString } = require('./type')
+import { isArray, isBoolean, isNumber, isObject, isString } from './type.js'
 
 # forall t. Array t -> Array t -> Boolean
 arrayEquals = (x) -> (y) ->
@@ -44,7 +44,7 @@ objectEquals = (x) -> (y) ->
 stringEquals = (x) -> (y) ->
   x is y
 
-module.exports = {
+export {
   arrayEquals
   booleanEquals
   eq

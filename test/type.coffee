@@ -1,4 +1,6 @@
-{ isArray, isBoolean, isFunction, isNumber, isObject, isString } = require('brazier/type')
+import { QUnit } from '/test/target/qunit/qunit.js'
+
+import { isArray, isBoolean, isFunction, isNumber, isObject, isString } from '/target/brazier/brazier/type.js'
 
 ### BEGIN DATA ###
 

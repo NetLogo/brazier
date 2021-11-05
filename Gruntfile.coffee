@@ -44,15 +44,6 @@ module.exports = (grunt) ->
       }
 
     },
-    browserify: {
-      main: {
-        src: ['target/brazier/bootstrap.js'],
-        dest: 'dist/brazier.js',
-        options: {
-          alias: []
-        }
-      }
-    },
     copy: {
 
       publish: {
@@ -80,34 +71,57 @@ module.exports = (grunt) ->
           , flatten: true
           },
 
-          {
-            src: ['dist/brazier.js']
-          , dest: 'test/target/brazier.js'
-          }
-
         ],
       },
 
     },
+    file_append: {
+      default_options: {
+        files: [
+          {
+            append: "const QUnit = window?.QUnit; export { QUnit };",
+            input:  'test/target/qunit/qunit.js',
+            output: 'test/target/qunit/qunit.js'
+          }
+        ]
+      }
+    },
+    connect: {
+      server: {
+        options: {
+          protocol: 'http',
+          port:     9005,
+          middleware: (connect, options, middlewares) ->
+                        middlewares.unshift((req, res, next) ->
+                          if req.url.endsWith('.js')
+                            res.setHeader('Content-Type', 'text/javascript')
+                          next()
+                        )
+                        middlewares
+        },
+      },
+    },
     qunit: {
-      all: ['test/*.html']
+      all: ['test/*.html'],
+      options: {
+        puppeteer: {
+          ignoreDefaultArgs: true,
+          args: [
+            "--headless",
+            "--disable-web-security",
+            "--allow-file-access-from-files"
+          ]
+        },
+      }
     }
   })
 
-  grunt.loadNpmTasks('grunt-browserify');
-  grunt.loadNpmTasks('grunt-coffeelint');
+  grunt.loadNpmTasks('grunt-coffeelint')
   grunt.loadNpmTasks('grunt-contrib-coffee')
+  grunt.loadNpmTasks('grunt-contrib-connect')
   grunt.loadNpmTasks('grunt-contrib-copy')
   grunt.loadNpmTasks('grunt-contrib-qunit')
+  grunt.loadNpmTasks('grunt-file-append')
 
-  # I do this because inlining it in `browserify`'s options causes the value to
-  # be evaluated before any of the tasks are run, but we need to wait until
-  # `coffee` runs for this to work --JAB (8/21/14)
-  grunt.task.registerTask('gen_aliases', 'Find aliases, then run browserify', ->
-    aliases = massAlias('./target/brazier/**/*.js', 'brazier')
-    grunt.config(['browserify', 'main', 'options', 'alias'], aliases);
-    return
-  )
-
-  grunt.registerTask('default', ['coffeelint', 'coffee:compile', 'copy:publish', 'gen_aliases', 'browserify'])
-  grunt.registerTask('test',    ['default', 'coffee:test', 'copy:test', 'qunit'])
+  grunt.registerTask('default', ['coffeelint', 'coffee:compile', 'copy:publish'])
+  grunt.registerTask('test',    ['default', 'coffee:test', 'copy:test', 'file_append', 'connect', 'qunit'])

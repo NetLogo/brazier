@@ -1,5 +1,7 @@
-{ arrayEquals, booleanEquals, numberEquals, objectEquals, stringEquals } = require('brazier/equals')
-{ apply, constantly, curry, flip, id, pipeline, tee, uncurry           } = require('brazier/function')
+import { QUnit } from 'http://localhost:9005/test/target/qunit/qunit.js'
+
+import { arrayEquals, booleanEquals, numberEquals, objectEquals, stringEquals } from '/target/brazier/brazier/equals.js'
+import { apply, constantly, curry, flip, id, pipeline, tee, uncurry           } from '/target/brazier/brazier/function.js'
 
 ### BEGIN DATA ###
 
