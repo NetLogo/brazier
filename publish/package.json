@@ -12,14 +12,14 @@
     "Jason Bertsche <jason.bertsche@gmail.com> (https://www.github.com/TheBizzle)"
   ],
   "devDependencies": {
-    "coffeelint": "2.1.0",
-    "grunt": ">=0.4.0",
-    "grunt-browserify": "6.0.0",
-    "grunt-coffeelint": "0.0.16",
-    "grunt-contrib-coffee": "2.1.0",
-    "grunt-contrib-copy": "1.0.0",
-    "grunt-contrib-qunit": "4.0.0",
-    "qunit": "^2.15.0"
+    "coffeelint":           "~2.1.0"
+  , "grunt":                "~1.4.1"
+  , "grunt-browserify":     "~6.0.0"
+  , "grunt-coffeelint":     "~0.0.16"
+  , "grunt-contrib-coffee": "~2.1.0"
+  , "grunt-contrib-copy":   "~1.0.0"
+  , "grunt-contrib-qunit":  "~5.1.1"
+  , "qunit":                "~2.17.2"
   },
   "scripts": {
     "test": "echo \"See https://github.com/NetLogo/brazier/actions/new for testing details.\""
