@@ -105,8 +105,11 @@ module.exports = (grunt) ->
       all: ['test/*.html'],
       options: {
         puppeteer: {
+          executablePath: "/usr/bin/snap"
           ignoreDefaultArgs: true,
           args: [
+            "run",
+            "chromium"
             "--headless",
             "--disable-web-security",
             "--allow-file-access-from-files"
