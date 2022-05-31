@@ -193,4 +193,4 @@ zip = (xs) -> (arr) ->
     out.push([xs[i], arr[i]])
   out
 
-export { all, concat, contains, countBy, difference, exists, filter, find, findIndex, flatMap, flattenDeep, foldl, forEach, head, isEmpty, item, last, length, map, maxBy, prepend, reverse, singleton, sortBy, sortedIndexBy, tail, toObject, unique, uniqueBy, zip }
+export { all, concat, contains, countBy, difference, exists, filter, find, findIndex, flatMap, flattenDeep, foldl, forEach, head, isEmpty, item, last, length, map, maxBy, reverse, singleton, sortBy, sortedIndexBy, tail, toObject, unique, uniqueBy, zip }

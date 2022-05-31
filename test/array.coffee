@@ -1,6 +1,6 @@
 import { QUnit } from '/test/target/qunit/qunit.js'
 
-import { all, concat, contains, countBy, difference, exists, filter, find, findIndex, flatMap, flattenDeep, foldl, forEach, head, isEmpty, item, last, length, map, maxBy, prepend, reverse, singleton, sortBy, sortedIndexBy, tail, toObject, unique, uniqueBy, zip } from '/target/brazier/brazier/array.js'
+import { all, concat, contains, countBy, difference, exists, filter, find, findIndex, flatMap, flattenDeep, foldl, forEach, head, isEmpty, item, last, length, map, maxBy, reverse, singleton, sortBy, sortedIndexBy, tail, toObject, unique, uniqueBy, zip } from '/target/brazier/brazier/array.js'
 import { id, pipeline    } from '/target/brazier/brazier/function.js'
 import { None, Something } from '/target/brazier/brazier/maybe.js'
 
