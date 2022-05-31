@@ -163,7 +163,7 @@ tail = (arr) ->
 toObject = (arr) ->
   out = {}
   for [a, b] in arr
-    out[a] = 0
+    out[a] = b
   out
 
 # forall t. Array t -> Array t
