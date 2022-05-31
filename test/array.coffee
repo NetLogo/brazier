@@ -450,10 +450,10 @@ QUnit.test("Array: foldl", (assert) ->
   bigBoy = (x) -> x2(x5(x10(x)))
 
   compose = (f, g) -> (x) -> g(f(x)) # Monoidal binary operator
-  id      = (x) -> x                 # Monoidal identity element
+  ident   = (x) -> x                 # Monoidal identity element
 
   # Function composition: Read it and weep
-  assert.deepEqual(foldl(compose)(id)([x2, x5, x10])(9), bigBoy(9))
+  assert.deepEqual(foldl(compose)(ident)([x2, x5, x10])(9), bigBoy(9))
 
 )
 
@@ -598,15 +598,15 @@ QUnit.test("Array: map", (assert) ->
 
   # Functor laws!
 
-  f    = (x) -> "#{x}!"
-  g    = (x) -> "#{x}?"
-  id   = (x) -> x
-  strs = ["apples", "grapes", "oranges", "bananas"]
+  f     = (x) -> "#{x}!"
+  g     = (x) -> "#{x}?"
+  ident = (x) -> x
+  strs  = ["apples", "grapes", "oranges", "bananas"]
 
   mapTwice    = pipeline(map(f), map(g))
   mapComposed = map(pipeline(f, g))
 
-  test(strs, id, strs)                                # Identity
+  test(strs, ident, strs)                             # Identity
   assert.deepEqual(mapTwice(strs), mapComposed(strs)) # Associativity
 
 )
