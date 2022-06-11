@@ -12,5 +12,6 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
+      - run: sudo snap install chromium
       - run: npm install
       - run: grunt test
