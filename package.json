@@ -19,7 +19,7 @@
   , "grunt-contrib-coffee":  "~2.1.0"
   , "grunt-contrib-connect": "~3.0.0"
   , "grunt-contrib-copy":    "~1.0.0"
-  , "grunt-contrib-qunit":   "~6.1.0"
+  , "grunt-contrib-qunit":   "~6.2.0"
   , "grunt-file-append":     "~0.0.7"
   , "qunit":                 "~2.19.1"
   },
