@@ -24,6 +24,19 @@ brazier is a JavaScript utility library.  It is heavily inspired by Haskell, Und
 
 Modules modules can be imported with standard ES6 `import`s (e.g. `import { isArray } from "/url/to/type.js"`).
 
+## How to Test
+
+Use the following terminal commands:
+
+  * `npm install`
+    * This downloads all of the necessary libraries
+  * `grunt`
+    * This builds the project
+  * `grunt test`
+    * This runs the test, but won't necessarily squawk if there's something badly wrong
+  * `grunt && python3 -m http.server 9005`
+    * This will build the latest version of the project and make the files accessible (via Python's bundled HTTP server) on port 9005.  You can then view the tests at `http://localhost:9005/test/test.html`.  Check the JavaScript console to ensure that there were no errors thrown.
+
 ## Terms of Use
 
 [![CC0](http://i.creativecommons.org/p/zero/1.0/88x31.png)](http://creativecommons.org/publicdomain/zero/1.0/)
