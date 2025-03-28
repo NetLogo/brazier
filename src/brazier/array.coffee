@@ -119,7 +119,7 @@ map = (f) -> (arr) ->
   for x in arr
     f(x)
 
-# forall t. (t -> Number) -> Array t -> t
+# forall t. (t -> Number) -> Array t -> Maybe t
 maxBy = (f) -> (arr) ->
   maxX = undefined
   maxY = -Infinity
