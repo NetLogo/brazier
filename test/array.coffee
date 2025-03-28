@@ -544,14 +544,14 @@ QUnit.test("Array: last", (assert) ->
     (input, expected) ->
       assert.deepEqual(last(input), expected)
 
-  test([],                   undefined)
-  test([1],                  1)
-  test([1..2],               2)
-  test([13..19],             19)
-  test([true, false, true],  true)
-  test([false, false, true], true)
-  test(["apples"],           "apples")
-  test([{}, true, 10],       10)
+  test([],                   None)
+  test([1],                  Something(1))
+  test([1..2],               Something(2))
+  test([13..19],             Something(19))
+  test([true, false, true],  Something(true))
+  test([false, false, true], Something(true))
+  test(["apples"],           Something("apples"))
+  test([{}, true, 10],       Something(10))
 
 )
 

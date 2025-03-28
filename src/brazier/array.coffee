@@ -106,9 +106,9 @@ isEmpty = (arr) ->
 item = (index) -> (xs) ->
   if 0 <= index < xs.length then Something(xs[index]) else None
 
-# forall t. Array t -> t
+# forall t. Array t -> Maybe t
 last = (arr) ->
-  arr[arr.length - 1]
+  item(arr.length - 1)(arr)
 
 # forall t. Array t -> Number
 length = (arr) ->
